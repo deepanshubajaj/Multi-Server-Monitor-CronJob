@@ -20,7 +20,7 @@ const SERVERS: ServerConfig[] = [
   }
 ];
 
-export const runtime = 'edge';
+//export const runtime = 'edge';
 
 async function pingServer(server: ServerConfig): Promise<ServerStatus> {
   try {
