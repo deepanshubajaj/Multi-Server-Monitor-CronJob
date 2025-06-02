@@ -32,7 +32,7 @@ async function pingServer(server: ServerConfig): Promise<ServerStatus> {
     });
 
     const text = await response.text();
-    
+
     if (response.ok) {
       return {
         success: true,
@@ -64,7 +64,7 @@ export async function GET() {
   try {
     // Ping all servers concurrently
     const results = await Promise.all(SERVERS.map(server => pingServer(server)));
-    
+
     return NextResponse.json({
       servers: SERVERS,
       statuses: results,
