@@ -5,18 +5,18 @@ import type { ServerConfig, ServerStatus } from '../../../types/server';
 const SERVERS: ServerConfig[] = [
   {
     id: 'server1',
-    name: 'Server-1',
-    url: process.env.SERVER_URL_1 || 'https://your-production-server.com'
+    name: 'GeekyShop Backend',
+    url: process.env.SERVER_URL_1 as string
   },
   {
     id: 'server2',
-    name: 'Server-2',
-    url: process.env.SERVER_URL_2 || 'https://your-staging-server.com'
+    name: 'server 2',
+    url: process.env.SERVER_URL_2 as string
   },
   {
     id: 'server3',
-    name: 'Server-3',
-    url: process.env.SERVER_URL_3 || 'https://your-development-server.com'
+    name: 'server 3',
+    url: process.env.SERVER_URL_3 as string
   }
 ];
 
@@ -27,26 +27,32 @@ async function pingServer(server: ServerConfig): Promise<ServerStatus> {
     const response = await fetch(server.url, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        'Accept': '*/*',
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const text = await response.text();
+    
+    if (response.ok) {
+      return {
+        success: true,
+        message: `Server is running: ${text}`,
+        timestamp: new Date().toISOString(),
+        serverId: server.id
+      };
     }
 
-    const data = await response.text();
-
     return {
-      success: true,
-      message: 'Server pinged successfully',
+      success: false,
+      message: 'Server returned an error',
+      error: `HTTP ${response.status}: ${text}`,
       timestamp: new Date().toISOString(),
       serverId: server.id
     };
   } catch (error) {
     return {
       success: false,
-      message: 'Failed to ping server',
+      message: 'Failed to connect to server',
       error: error instanceof Error ? error.message : 'Unknown error',
       timestamp: new Date().toISOString(),
       serverId: server.id
@@ -58,7 +64,7 @@ export async function GET() {
   try {
     // Ping all servers concurrently
     const results = await Promise.all(SERVERS.map(server => pingServer(server)));
-
+    
     return NextResponse.json({
       servers: SERVERS,
       statuses: results,
