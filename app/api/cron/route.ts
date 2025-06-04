@@ -17,6 +17,11 @@ const SERVERS: ServerConfig[] = [
     id: 'server-3',
     name: 'SecretVault Backend',
     url: process.env.SERVER_URL_3 as string
+  },
+  {
+    id: 'server-4',
+    name: 'DBPortfolio Backend',
+    url: process.env.SERVER_URL_4 as string
   }
 ];
 
