@@ -1,0 +1,9 @@
+
+{
+  "crons": [{
+    "path": "/api/cron",
+    "schedule": "*/10 * * * *"
+  }]
+} 
+
+// vercel.json script for cron job to happen every 10 minutes

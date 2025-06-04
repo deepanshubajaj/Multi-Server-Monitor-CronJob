@@ -4,18 +4,18 @@ import type { ServerConfig, ServerStatus } from '../../../types/server';
 // Configure your servers here or load from environment variables
 const SERVERS: ServerConfig[] = [
   {
-    id: 'server1',
+    id: 'server-1',
     name: 'GeekyShop Backend',
     url: process.env.SERVER_URL_1 as string
   },
   {
-    id: 'server2',
-    name: 'server 2',
+    id: 'server-2',
+    name: 'ContactForm Backend',
     url: process.env.SERVER_URL_2 as string
   },
   {
-    id: 'server3',
-    name: 'server 3',
+    id: 'server-3',
+    name: 'SecretVault Backend',
     url: process.env.SERVER_URL_3 as string
   }
 ];
