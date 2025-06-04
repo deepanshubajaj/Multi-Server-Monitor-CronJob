@@ -95,9 +95,9 @@ export default function Home() {
 
           <div className="mt-6 p-4 bg-gray-700 rounded-md">
             <h3 className="text-white font-semibold mb-2">Cron Schedule</h3>
-            <p className="text-gray-300">All servers are pinged every 10 minutes</p>
+            <p className="text-gray-300">All servers are pinged every day at 1:00 AM.</p>
             <code className="block mt-2 text-sm bg-gray-800 p-2 rounded text-green-400">
-              */10 * * * *
+              0 1 * * *
             </code>
           </div>
         </div>
