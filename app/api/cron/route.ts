@@ -22,6 +22,11 @@ const SERVERS: ServerConfig[] = [
     id: 'server-4',
     name: 'DBPortfolio Backend',
     url: process.env.SERVER_URL_4 as string
+  },
+  {
+    id: 'server-5',
+    name: 'Dine Hub json-server Backend',
+    url: process.env.SERVER_URL_5 as string
   }
 ];
 
